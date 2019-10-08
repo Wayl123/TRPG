@@ -7,5 +7,5 @@ app.get("/", (req, res) => {
 	
 const PORT = process.env.PORT || 3000;
 http.listen(PORT, () => {
-    console.log(`Anonymous Chatroom is running on port ${ PORT }`);
+    console.log(`TRPG app is running on port ${ PORT }`);
 });
