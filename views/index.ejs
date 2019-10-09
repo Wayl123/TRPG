@@ -1,3 +1,24 @@
 <% include ./partials/header %>
 
+<a class="btn btn-sm btn-primary" href="/trpg/new">Create new character</a>
+
+<div class="row text-center">
+	<% characters.forEach(function(character){ %>
+		<div class="col-md-3 col-sm-6">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title"><%= character.name %></h5>
+					<p class="card-text">HP: <%= character.hp %></p>
+					<p class="card-text">Str: <%= character.str %></p>
+					<p class="card-text">Mag: <%= character.mag %></p>
+					<p class="card-text">Def: <%= character.def %></p>
+					<p class="card-text">Res: <%= character.res %></p>
+					<p class="card-text">Dex: <%= character.dex %></p>
+					<p class="card-text">Spd: <%= character.spd %></p>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
+
 <% include ./partials/footer %>
