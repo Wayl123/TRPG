@@ -47,6 +47,6 @@ app.post("/trpg", (req, res) => {
 });
 	
 const PORT = process.env.PORT || 3000;
-http.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`TRPG app is running on port ${ PORT }`);
 });
