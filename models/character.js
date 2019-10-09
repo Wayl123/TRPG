@@ -15,6 +15,12 @@ var characterSchema = new mongoose.Schema({
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Skill"
 		}
+	],
+	weapon: [ //list of weapon/upgrade
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Weapon"
+		}
 	]
 });
 
