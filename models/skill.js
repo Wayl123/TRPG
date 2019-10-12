@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var skillSchema = new mongoose.Schema({
 	name: String, //skill name
-	reqjob: String, //job restriction (empty if no restriction)
+	reqjob: String, //job restriction
 	type: String, //physical or magic
 	acc: Number, //chance of hitting, can crit
 	max: Number, //max roll
