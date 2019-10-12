@@ -3,11 +3,15 @@
 <a class="btn btn-sm btn-primary" href="/trpg/new">Create new character</a>
 
 <div class="row text-center">
-	<% characters.forEach(function(character){ %>
+	<% characters.forEach((character) => { %>
 		<div class="col-md-3 col-sm-6">
 			<div class="card" style="width: 18rem;">
 				<div class="card-body">
 					<h5 class="card-title"><%= character.name %></h5>
+					<p class="card-text">
+						Class:
+						<%= character.job.slice(-1)[0].name %>
+					</p>
 					<p class="card-text">HP: <%= character.hp %></p>
 					<p class="card-text">Str: <%= character.str %></p>
 					<p class="card-text">Mag: <%= character.mag %></p>
@@ -15,6 +19,12 @@
 					<p class="card-text">Res: <%= character.res %></p>
 					<p class="card-text">Dex: <%= character.dex %></p>
 					<p class="card-text">Spd: <%= character.spd %></p>
+					<button class="btn btn-sm btn-primary collapsed" data-toggle="collapse" data-target="#collapse<%= character._id %>" aria-expanded="false">
+						More detail
+					</button>
+					<div id="collapse<%= character._id %>" class="collapse">
+						<p class="card-text">Skill: </p>
+					</div>
 				</div>
 			</div>
 		</div>
