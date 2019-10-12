@@ -5,8 +5,12 @@ var express = require("express"),
 	//models
 	Character = require("./models/character"),
 	Skill = require("./models/skill"),
-	Weapon = require("./models/weapon");
+	Weapon = require("./models/weapon"),
+	Job = require("./models/job"),
+	//seed
+	seedDB = require("./seeds");
 
+seedDB();
 const url = process.env.DATABASEURL || "mongodb://localhost:27017/trpg";
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
@@ -22,7 +26,7 @@ app.get("/", (req, res) => {
 //trpg
 //index
 app.get("/trpg", (req, res) => {
-	Character.find({}, (err, characters) => {
+	Character.find({}).populate("job").exec((err, characters) => {
 		if(err){
 			console.log(err);
 		} else {
@@ -33,7 +37,13 @@ app.get("/trpg", (req, res) => {
 
 //new
 app.get("/trpg/new", (req, res) => {
-	res.render("new");
+	Job.find({"joblvl": 0}, (err, jobs) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.render("new", {jobs: jobs});
+		}
+	});
 });
 
 //create
@@ -42,7 +52,15 @@ app.post("/trpg", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
-			res.redirect("/trpg");
+			Job.findOne({"name": req.body.job}, (err, job) => {
+				if(err){
+					console.log(err);
+				} else {
+					character.job.push(job);
+					character.save();
+					res.redirect("/trpg");
+				}
+			});
 		}
 	});
 });
