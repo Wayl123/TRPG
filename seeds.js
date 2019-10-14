@@ -8,7 +8,7 @@ var mongoose = require("mongoose"),
 var skillData = [
     // {
         // name: "Punch",
-		// reqjob: "Novice",
+		// req: "Novice",
 		// type: "physical",
 		// acc: 50,
 		// max: 3,
@@ -17,10 +17,28 @@ var skillData = [
 	// },
 	// {
 		// name: "Magic Orb",
-		// reqjob: "Novice",
+		// req: "Novice",
 		// type: "magic",
 		// acc: 50,
 		// max: 3,
+		// min: 1,
+		// times: 1
+	// },
+	// {
+		// name: "Swing sword",
+		// req: "Training sword",
+		// type: "physical",
+		// acc: 30,
+		// max: 5,
+		// min: 1,
+		// times: 1
+	// },
+	// {
+		// name: "Magic spear",
+		// req: "Training staff",
+		// type: "magic",
+		// acc: 30,
+		// max: 5,
 		// min: 1,
 		// times: 1
 	// }
@@ -30,6 +48,25 @@ var jobData = [
     // {
         // name: "Novice",
 		// joblvl: 0
+	// }
+]
+
+var weaponData = [
+	// {
+		// name: "Training sword",
+		// reqjob: "Novice",
+		// type: "physical",
+		// max: 1,
+		// min: 0,
+		// times: 1
+	// },
+	// {
+		// name: "Training staff",
+		// reqjob: "Novice",
+		// type: "magic",
+		// max: 1,
+		// min: 0,
+		// times: 1
 	// }
 ]
 
@@ -43,7 +80,17 @@ function seedDB(){
                 console.log("Added a job");
             }
         });
-    }); 
+    });
+	
+	weaponData.forEach((weaponSeed) => {
+		Weapon.create(weaponSeed, (err, weapon) => {
+            if(err){
+                console.log(err)
+            } else {
+                console.log("Added a weapon");
+            }
+        });
+    });
 	
 	skillData.forEach((skillSeed) => {
 		Skill.create(skillSeed, (err, skill) => {
@@ -51,13 +98,22 @@ function seedDB(){
 				console.log(err);
 			} else {
 				console.log("Added a skill");
-				Job.findOne({"name": skill.reqjob}, (err, job) => {
-					if(err){
+				Job.findOne({"name": skill.req}, (err, job) => {
+					if(err || !job){
 						console.log(err);
 					} else {
 						job.skills.push(skill);
 						job.save();
 						console.log("Add skill to job");
+					}
+				});
+				Weapon.findOne({"name": skill.req}, (err, weapon) => {
+					if(err || !weapon){
+						console.log(err);
+					} else {
+						weapon.skills.push(skill);
+						weapon.save();
+						console.log("Add skill to weapon");
 					}
 				});
 			}

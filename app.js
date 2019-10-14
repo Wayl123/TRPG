@@ -27,10 +27,13 @@ app.get("/", (req, res) => {
 //index
 app.get("/trpg", (req, res) => {
 	Character.find({}).
-	populate({
+	populate([{
 		path: "jobs",
-		populate: {path: "skills"}
-	}).exec((err, characters) => {
+		populate: {path: "skills", select: "name"}
+	},
+	{
+		path: "weapon"
+	}]).exec((err, characters) => {
 		if(err){
 			console.log(err);
 		} else {

@@ -9,8 +9,10 @@
 				<div class="card-body">
 					<h5 class="card-title"><%= character.name %></h5>
 					<p class="card-text">
-						Class:
-						<%= character.jobs.slice(-1)[0].name %>
+						Class: <%= character.jobs.slice(-1)[0].name %>
+					</p>
+					<p class="card-text">
+						Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>
 					</p>
 					<p class="card-text">HP: <%= character.hp %></p>
 					<p class="card-text">Str: <%= character.str %></p>
