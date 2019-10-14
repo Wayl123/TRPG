@@ -7,7 +7,7 @@ var skillSchema = new mongoose.Schema({
 	max: Number, //max roll
 	min: Number, //min roll
 	times: Number, //number dice to roll
-	skill: [ //weapon skill, character can use these skill when weapon equip
+	skills: [ //weapon skill, character can use these skill when weapon equip
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Skill"

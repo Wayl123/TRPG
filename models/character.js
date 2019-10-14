@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var characterSchema = new mongoose.Schema({
 	name: String, //character name
-	job: [ //job specific skill
+	jobs: [ //job specific skill
 		{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Job"

@@ -10,7 +10,7 @@
 					<h5 class="card-title"><%= character.name %></h5>
 					<p class="card-text">
 						Class:
-						<%= character.job.slice(-1)[0].name %>
+						<%= character.jobs.slice(-1)[0].name %>
 					</p>
 					<p class="card-text">HP: <%= character.hp %></p>
 					<p class="card-text">Str: <%= character.str %></p>
@@ -24,6 +24,11 @@
 					</button>
 					<div id="collapse<%= character._id %>" class="collapse">
 						<p class="card-text">Skill: </p>
+						<% character.jobs.forEach((job) => { %>
+							<% job.skills.forEach((skill) => { %>
+								<p class="card-text"><%= skill.name %></p>
+							<% }); %>
+						<% }); %>
 					</div>
 				</div>
 			</div>

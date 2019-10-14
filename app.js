@@ -7,7 +7,7 @@ var express = require("express"),
 	Skill = require("./models/skill"),
 	Weapon = require("./models/weapon"),
 	Job = require("./models/job"),
-	//seed
+	//seed, used to seed the database with static items such as job and skill
 	seedDB = require("./seeds");
 
 seedDB();
@@ -26,7 +26,11 @@ app.get("/", (req, res) => {
 //trpg
 //index
 app.get("/trpg", (req, res) => {
-	Character.find({}).populate("job").exec((err, characters) => {
+	Character.find({}).
+	populate({
+		path: "jobs",
+		populate: {path: "skills"}
+	}).exec((err, characters) => {
 		if(err){
 			console.log(err);
 		} else {
@@ -56,7 +60,7 @@ app.post("/trpg", (req, res) => {
 				if(err){
 					console.log(err);
 				} else {
-					character.job.push(job);
+					character.jobs.push(job);
 					character.save();
 					res.redirect("/trpg");
 				}
