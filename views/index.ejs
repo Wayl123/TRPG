@@ -21,7 +21,7 @@
 					<p class="card-text">Res: <%= character.res %></p>
 					<p class="card-text">Dex: <%= character.dex %></p>
 					<p class="card-text">Spd: <%= character.spd %></p>
-					<button class="btn btn-sm btn-primary collapsed" data-toggle="collapse" data-target="#collapse<%= character._id %>" aria-expanded="false">
+					<button class="btn btn-sm btn-secondary separate-line collapsed" data-toggle="collapse" data-target="#collapse<%= character._id %>" aria-expanded="false">
 						More detail
 					</button>
 					<div id="collapse<%= character._id %>" class="collapse">
@@ -32,6 +32,7 @@
 							<% }); %>
 						<% }); %>
 					</div>
+					<a class="btn btn-sm btn-warning" href="/trpg/show">Full detail</a>
 				</div>
 			</div>
 		</div>

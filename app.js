@@ -71,6 +71,24 @@ app.post("/trpg", (req, res) => {
 		}
 	});
 });
+
+//show
+app.get("/trpg/:id", (req, res) => {
+	Character.findById(req.param.id).
+	populate([{
+		path: "jobs",
+		populate: {path: "skills", select: "name"}
+	},
+	{
+		path: "weapon"
+	}]).exec((err, characters) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.render("show", {characters: characters});
+		}
+	})
+});
 	
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

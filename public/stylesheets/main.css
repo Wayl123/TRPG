@@ -2,3 +2,8 @@
 	width: 30%; 
 	margin: 25px auto;
 }
+
+.separate-line {
+	display: block;
+	margin: auto;
+}
