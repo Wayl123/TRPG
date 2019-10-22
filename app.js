@@ -89,6 +89,20 @@ app.get("/trpg/:id", (req, res) => {
 		}
 	})
 });
+
+//edit
+router.get("/:id/edit", (req, res) => {
+	Character.findById(req.params.id, (err, character) => {
+		res.render("edit", {character: character});
+	});
+});
+
+//update
+router.put("/:id", (req, res) => {
+	Character.findByIdAndUpdate(req.params.id, req.body.character, (err, character) => {
+		res.redirect("/trpg/" + req.params.id);
+	});
+});
 	
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
