@@ -74,18 +74,18 @@ app.post("/trpg", (req, res) => {
 
 //show
 app.get("/trpg/:id", (req, res) => {
-	Character.findById(req.param.id).
+	Character.findById(req.params.id).
 	populate([{
 		path: "jobs",
-		populate: {path: "skills", select: "name"}
+		populate: {path: "skills"}
 	},
 	{
 		path: "weapon"
-	}]).exec((err, characters) => {
+	}]).exec((err, character) => {
 		if(err){
 			console.log(err);
 		} else {
-			res.render("show", {characters: characters});
+			res.render("show", {character: character});
 		}
 	})
 });

@@ -1,6 +1,44 @@
 <% include ./partials/header %>
 
-To be showpage
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title"><%= character.name %></h5>
+		<div>
+			<p class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></p>
+			<% character.jobs.slice(0, -1).forEach((job) => { %>
+				<p class="card-text">
+					<p class="card-text">job.name</p>
+				</p>
+			<% }); %>
+		</div>
+		<p class="card-text">
+			Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>
+		</p>
+		<p class="card-text">HP: <%= character.hp %></p>
+		<p class="card-text">Str: <%= character.str %></p>
+		<p class="card-text">Mag: <%= character.mag %></p>
+		<p class="card-text">Def: <%= character.def %></p>
+		<p class="card-text">Res: <%= character.res %></p>
+		<p class="card-text">Dex: <%= character.dex %></p>
+		<p class="card-text">Spd: <%= character.spd %></p>
+		<div>
+			<p class="card-text">Skill: </p>
+			<% character.jobs.forEach((job) => { %>
+				<% job.skills.forEach((skill) => { %>
+					<div class="card">
+						<div class="card-body">
+							<p class="card-text"><%= skill.name %></p>
+							<p class="card-text">Type: <%= skill.type %></p>
+							<p class="card-text">Acc: <%= skill.acc %></p>
+							<p class="card-text">Dmg: <%= skill.min %>-<%= skill.max %></p>
+							<p class="card-text">Times: <%= skill.times %></p>
+						</div>
+					</div>
+				<% }); %>
+			<% }); %>
+		</div>
+	</div>
+</div>
 
 <a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
 
