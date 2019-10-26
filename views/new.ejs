@@ -1,9 +1,5 @@
 <% include ./partials/header %>
 
-<% function randomStartValue(){ %>
-	<% return Math.round(Math.random()*10)+5 %>
-<% } %>
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 text-center">
@@ -59,5 +55,9 @@
 		</div>
 	</div>
 </div>
+
+<% function randomStartValue(){ %>
+	<% return Math.round(Math.random()*10)+5; %>
+<% } %>
 
 <% include ./partials/footer %>

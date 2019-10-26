@@ -4,12 +4,12 @@
 	<div class="card-body">
 		<h5 class="card-title"><%= character.name %></h5>
 		<div>
-			<p class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></p>
-			<% character.jobs.slice(0, -1).forEach((job) => { %>
-				<p class="card-text">
-					<p class="card-text">job.name</p>
-				</p>
-			<% }); %>
+			<ul>
+				<li class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></li>
+				<% character.jobs.slice(0, -1).forEach((job) => { %>
+					<li class="card-text"><%= job.name %></li>
+				<% }); %>
+			</ul>
 		</div>
 		<p class="card-text">
 			Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>

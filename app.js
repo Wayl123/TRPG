@@ -2,6 +2,7 @@ var express = require("express"),
 	app = express(),
 	bodyParser = require("body-parser"),
 	mongoose = require("mongoose"),
+	methodOverride = require("method-override"),
 	//models
 	Character = require("./models/character"),
 	Skill = require("./models/skill"),
@@ -17,6 +18,7 @@ mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindA
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 
 //landing
 app.get("/", (req, res) => {
@@ -32,7 +34,8 @@ app.get("/trpg", (req, res) => {
 		populate: {path: "skills", select: "name"}
 	},
 	{
-		path: "weapon"
+		path: "weapon",
+		populate: {path: "skills", select: "name"}
 	}]).exec((err, characters) => {
 		if(err){
 			console.log(err);
@@ -80,7 +83,8 @@ app.get("/trpg/:id", (req, res) => {
 		populate: {path: "skills"}
 	},
 	{
-		path: "weapon"
+		path: "weapon",
+		populate: {path: "skills"}
 	}]).exec((err, character) => {
 		if(err){
 			console.log(err);
@@ -91,14 +95,22 @@ app.get("/trpg/:id", (req, res) => {
 });
 
 //edit
-router.get("/:id/edit", (req, res) => {
-	Character.findById(req.params.id, (err, character) => {
-		res.render("edit", {character: character});
+app.get("/trpg/:id/edit", (req, res) => {
+	Character.findById(req.params.id).
+	populate([{
+		path: "jobs",
+		select: "name"
+	}]).exec((err, character) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.render("edit", {character: character});
+		}
 	});
 });
 
 //update
-router.put("/:id", (req, res) => {
+app.put("/trpg/:id", (req, res) => {
 	Character.findByIdAndUpdate(req.params.id, req.body.character, (err, character) => {
 		res.redirect("/trpg/" + req.params.id);
 	});

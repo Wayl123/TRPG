@@ -1,3 +1,62 @@
 <% include ./partials/header %>
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Create New Character</h1>
+		</div>
+		<div class="center-form">
+			<form action="/trpg/<%= character._id %>?_method=PUT" method="POST">
+				<div class="form-group">
+					<label>Name</label>
+					<input class="form-control" type="text" name="character[name]" placeholder="character name" value="<%= character.name %>" required>
+				</div>
+				<div class="form-group">
+					<label>Job/Class</label>
+					<ul>
+						<% character.jobs.forEach((job) => { %>
+							<li>
+								<%= job.name %>
+								<span class="btn btn-sm btn-danger deleteJob">Remove</span>
+							</li>
+						<% }); %>
+					</ul>
+				</div>
+				<div class="form-group">
+					<label>HP</label>
+					<input class="form-control" type="number" name="character[hp]" value=<%= character.hp %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Str</label>
+					<input class="form-control" type="number" name="character[str]" value=<%= character.str %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Mag</label>
+					<input class="form-control" type="number" name="character[mag]" value=<%= character.mag %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Def</label>
+					<input class="form-control" type="number" name="character[def]" value=<%= character.def %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Res</label>
+					<input class="form-control" type="number" name="character[res]" value=<%= character.res %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Dex</label>
+					<input class="form-control" type="number" name="character[dex]" value=<%= character.dex %> readonly>
+				</div>
+				<div class="form-group">
+					<label>Spd</label>
+					<input class="form-control" type="number" name="character[spd]" value=<%= character.spd %> readonly>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-success" type="submit">Submit!</button>
+				</div>
+			</form>
+			<a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
+		</div>
+	</div>
+</div>
+
 <% include ./partials/footer %>
