@@ -3,6 +3,7 @@
 <div class="card">
 	<div class="card-body">
 		<h5 class="card-title"><%= character.name %></h5>
+		<a class="btn btn-sm btn-warning" href="/trpg/<%= character._id %>/edit">Edit Character</a>
 		<div>
 			<ul>
 				<li class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></li>

@@ -17,38 +17,37 @@
 						<% character.jobs.forEach((job) => { %>
 							<li>
 								<%= job.name %>
-								<span class="btn btn-sm btn-danger deleteJob">Remove</span>
 							</li>
 						<% }); %>
 					</ul>
 				</div>
 				<div class="form-group">
 					<label>HP</label>
-					<input class="form-control" type="number" name="character[hp]" value=<%= character.hp %> readonly>
+					<input class="form-control" type="number" name="character[hp]" value=<%= character.hp %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Str</label>
-					<input class="form-control" type="number" name="character[str]" value=<%= character.str %> readonly>
+					<input class="form-control" type="number" name="character[str]" value=<%= character.str %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Mag</label>
-					<input class="form-control" type="number" name="character[mag]" value=<%= character.mag %> readonly>
+					<input class="form-control" type="number" name="character[mag]" value=<%= character.mag %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Def</label>
-					<input class="form-control" type="number" name="character[def]" value=<%= character.def %> readonly>
+					<input class="form-control" type="number" name="character[def]" value=<%= character.def %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Res</label>
-					<input class="form-control" type="number" name="character[res]" value=<%= character.res %> readonly>
+					<input class="form-control" type="number" name="character[res]" value=<%= character.res %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Dex</label>
-					<input class="form-control" type="number" name="character[dex]" value=<%= character.dex %> readonly>
+					<input class="form-control" type="number" name="character[dex]" value=<%= character.dex %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<label>Spd</label>
-					<input class="form-control" type="number" name="character[spd]" value=<%= character.spd %> readonly>
+					<input class="form-control" type="number" name="character[spd]" value=<%= character.spd %> min="0" step="1">
 				</div>
 				<div class="form-group">
 					<button class="btn btn-lg btn-success" type="submit">Submit!</button>
