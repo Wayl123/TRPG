@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<a class="btn btn-sm btn-primary" href="/job/new">Create new job</a>
+
+<div class="row text-center">
+	<% jobs.forEach((job) => { %>
+		<div class="col-md-3 col-sm-6">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title"><%= job.name %></h5>
+					<p class="card-text">Joblvl: <%= job.joblvl %></p><p class="card-text">Skill: </p>
+					<ul>
+						<% job.skills.forEach((skill) => { %>
+							<li class="card-text"><%= skill.name %></li>
+						<% }); %>
+					</ul>
+					<a class="btn btn-sm btn-warning" href="/trpg/<%= job._id %>">Full detail</a>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
+
+<a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
+
+<% include ../partials/footer %>

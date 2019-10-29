@@ -4,7 +4,6 @@ var express = require("express"),
 	Character = require("../models/character"),
 	Job = require("../models/job");
 
-//trpg
 //index
 router.get("/", (req, res) => {
 	Character.find({}).

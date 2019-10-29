@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+<a class="btn btn-sm btn-primary" href="/skill/new">Create new skill</a>
+
+<div class="row text-center">
+	<% skills.forEach((skill) => { %>
+		<div class="col-md-3 col-sm-6">
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<p class="card-text">Skill gain from: <%= skill.req %></p>
+					<p class="card-text">Damage type: <%= skill.type %></p>
+					<p class="card-text">Accuracy: <%= skill.acc %></p>
+					<p class="card-text">Max Roll: <%= skill.max %></p>
+					<p class="card-text">Min Roll: <%= skill.min %></p>
+					<p class="card-text">Number of dice: <%= skill.times %></p>
+					<a class="btn btn-sm btn-warning" href="/trpg/<%= skill._id %>">Full detail</a>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
+
+<a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
+
+<% include ../partials/footer %>

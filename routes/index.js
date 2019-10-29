@@ -1,8 +1,5 @@
 var express = require("express"),
-	router = express.Router(),
-	//models
-	Character = require("../models/character"),
-	Job = require("../models/job");
+	router = express.Router();
 	
 //landing
 router.get("/", (req, res) => {

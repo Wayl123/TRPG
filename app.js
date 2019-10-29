@@ -12,6 +12,8 @@ var express = require("express"),
 	seedDB = require("./seeds");
 	//routes
 	characterRoutes = require("./routes/characters"),
+	jobRoutes = require("./routes/jobs"),
+	skillRoutes = require("./routes/skills"),
 	indexRoutes = require("./routes/index");
 
 seedDB();
@@ -25,6 +27,8 @@ app.use(methodOverride("_method"));
 
 //use routes
 app.use("/trpg", characterRoutes);
+app.use("/job", jobRoutes);
+app.use("/skill", skillRoutes);
 app.use(indexRoutes);
 	
 const PORT = process.env.PORT || 3000;
