@@ -47,5 +47,16 @@ router.post("/", (req, res) => {
 		}
 	});
 });
+
+//destroy
+router.delete("/:id", (req, res) => {
+	Skill.findByIdAndRemove(req.params.id, (err, skill) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/skill");
+		}
+	});
+});
 	
 module.exports = router;

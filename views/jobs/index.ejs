@@ -8,15 +8,19 @@
 			<div class="card" style="width: 18rem;">
 				<div class="card-body">
 					<h5 class="card-title"><%= job.name %></h5>
+					<form class="delete-form" action="/job/<%= job._id %>?_method=DELETE" method="POST">
+						<button class="btn btn-sm btn-danger">Delete</button>
+					</form>
 					<p class="card-text">Joblvl: <%= job.joblvl %></p>
-					<p class="card-text">Req: <%= (job.req === "" || !job.req) ? "None" : job.req %></p>
-					<p class="card-text">Skill: </p>
-					<ul>
-						<% job.skills.forEach((skill) => { %>
-							<li class="card-text"><%= skill.name %></li>
-						<% }); %>
-					</ul>
-					<a class="btn btn-sm btn-warning" href="/trpg/<%= job._id %>">Full detail</a>
+					<p class="card-text">Req: <%= (!job.req || job.req === "") ? "None" : job.req %></p>
+					<p class="card-text">Skill: 
+						<ul>
+							<% job.skills.forEach((skill) => { %>
+								<li class="card-text"><%= skill.name %></li>
+							<% }); %>
+						</ul>
+					</p>
+					<a class="btn btn-sm btn-warning" href="/job/<%= job._id %>">Full detail</a>
 				</div>
 			</div>
 		</div>

@@ -94,4 +94,15 @@ router.put("/:id", (req, res) => {
 	});
 });
 
+//destroy
+router.delete("/:id", (req, res) => {
+	Character.findByIdAndRemove(req.params.id, (err, character) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/trpg");
+		}
+	});
+});
+
 module.exports = router;

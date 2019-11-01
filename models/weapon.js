@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var skillSchema = new mongoose.Schema({
+var weaponSchema = new mongoose.Schema({
 	name: String, //weapon name
 	reqjob: String, //job restriction (empty if no restriction)
 	type: String, //physical or magic (only boost when using same type skill)
@@ -15,4 +15,4 @@ var skillSchema = new mongoose.Schema({
 	]
 });
 
-module.exports = mongoose.model("Weapon", skillSchema);
+module.exports = mongoose.model("Weapon", weaponSchema);

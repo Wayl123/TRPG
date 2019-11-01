@@ -4,12 +4,17 @@
 	<div class="card-body">
 		<h5 class="card-title"><%= character.name %></h5>
 		<a class="btn btn-sm btn-warning" href="/trpg/<%= character._id %>/edit">Edit Character</a>
+		<form class="delete-form" action="/trpg/<%= character._id %>?_method=DELETE" method="POST">
+			<button class="btn btn-sm btn-danger">Delete</button>
+		</form>
 		<div>
 			<ul>
-				<li class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></li>
-				<% character.jobs.slice(0, -1).forEach((job) => { %>
-					<li class="card-text"><%= job.name %></li>
-				<% }); %>
+				<% if(character.jobs.length > 0){ %>
+					<li class="card-text">Class: <strong><%= character.jobs.slice(-1)[0].name %></strong></li>
+					<% character.jobs.slice(0, -1).forEach((job) => { %>
+						<li class="card-text"><%= job.name %></li>
+					<% }); %>
+				<% } %>
 			</ul>
 		</div>
 		<p class="card-text">

@@ -33,5 +33,16 @@ router.post("/", (req, res) => {
 		}
 	});
 });
+
+//destroy
+router.delete("/:id", (req, res) => {
+	Job.findByIdAndRemove(req.params.id, (err, job) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/job");
+		}
+	});
+});
 	
 module.exports = router;

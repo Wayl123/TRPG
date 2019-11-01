@@ -10,8 +10,11 @@
 			<div class="card" style="width: 18rem;">
 				<div class="card-body">
 					<h5 class="card-title"><%= character.name %></h5>
+					<form class="delete-form" action="/trpg/<%= character._id %>?_method=DELETE" method="POST">
+						<button class="btn btn-sm btn-danger">Delete</button>
+					</form>
 					<p class="card-text">
-						Class: <%= character.jobs.slice(-1)[0].name %>
+						Class: <%= character.jobs.length > 0 ? character.jobs.slice(-1)[0].name : "" %>
 					</p>
 					<p class="card-text">
 						Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>
@@ -27,14 +30,15 @@
 						More detail
 					</button>
 					<div id="collapse<%= character._id %>" class="collapse">
-						<p class="card-text">Skill: </p>
-						<ul>
-							<% character.jobs.forEach((job) => { %>
-								<% job.skills.forEach((skill) => { %>
-									<li class="card-text"><%= skill.name %></li>
+						<p class="card-text">Skill: 
+							<ul>
+								<% character.jobs.forEach((job) => { %>
+									<% job.skills.forEach((skill) => { %>
+										<li class="card-text"><%= skill.name %></li>
+									<% }); %>
 								<% }); %>
-							<% }); %>
-						</ul>
+							</ul>
+						</p>
 					</div>
 					<a class="btn btn-sm btn-warning" href="/trpg/<%= character._id %>">Full detail</a>
 				</div>

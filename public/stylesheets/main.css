@@ -13,3 +13,7 @@ ul {
 	display: block;
 	margin: auto;
 }
+
+.delete-form {
+	display: inline;
+}

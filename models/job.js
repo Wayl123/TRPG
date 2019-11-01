@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
 
-var skillSchema = new mongoose.Schema({
+var jobSchema = new mongoose.Schema({
 	name: String, //class name
 	joblvl: Number, //level restriction for job
-	req: String,
+	req: String, //prerequisite class
 	skills: [ //class skill, character can use all job skill they have been
 		{
 			type: mongoose.Schema.Types.ObjectId,
@@ -12,4 +12,4 @@ var skillSchema = new mongoose.Schema({
 	]
 });
 
-module.exports = mongoose.model("Job", skillSchema);
+module.exports = mongoose.model("Job", jobSchema);
