@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Create New Character</h1>
+		</div>
+		<div class="center-form">
+			<form action="/trpg" method="POST">
+				<div class="form-group">
+					<label>Name</label>
+					<input class="form-control" type="text" name="skill[name]" placeholder="skill name" required>
+				</div>
+				<div class="form-group">
+					<label>Attach to</label>
+					<input class="form-control" type="number" name="skill[req]" placeholder="Job or weapon skill is attached to" required>
+				</div>
+				<div class="form-group">
+					<label>Type</label>
+					<select class="form-control" name="skill[type]">
+						<option value="physical">Physical</option>
+						<option value="magical">Magical</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Accuracy (Accuracy of a skill, improvable by str or mag)</label>
+					<input class="form-control" type="number" name="job[acc]" value="0" min="0" max="100" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Max Damage (Maximum damage roll, must be higher or equal to minimum damage roll)</label>
+					<input class="form-control" type="number" name="job[max]" value="0" min="0" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Min Damage (Minimum damage roll)</label>
+					<input class="form-control" type="number" name="job[min]" value="0" min="0" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Dice rolls (How many dice to roll)</label>
+					<input class="form-control" type="number" name="job[min]" value="1" min="1" step="1" required>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-success" type="submit">Submit!</button>
+				</div>
+			</form>
+			<a class="btn btn-sm btn-danger" href="/skill">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>

@@ -17,5 +17,21 @@ router.get("/", (req, res) => {
 		}
 	});
 });
+
+//new
+router.get("/new", (req, res) => {
+	res.render("jobs/new");
+});
+
+//create
+router.post("/", (req, res) => {
+	Job.create(req.body.job, (err, job) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/job");
+		}
+	});
+});
 	
 module.exports = router;

@@ -16,7 +16,7 @@ var express = require("express"),
 	skillRoutes = require("./routes/skills"),
 	indexRoutes = require("./routes/index");
 
-seedDB();
+//seedDB();
 const url = process.env.DATABASEURL || "mongodb://localhost:27017/trpg";
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 

@@ -8,7 +8,9 @@
 			<div class="card" style="width: 18rem;">
 				<div class="card-body">
 					<h5 class="card-title"><%= job.name %></h5>
-					<p class="card-text">Joblvl: <%= job.joblvl %></p><p class="card-text">Skill: </p>
+					<p class="card-text">Joblvl: <%= job.joblvl %></p>
+					<p class="card-text">Req: <%= (job.req === "" || !job.req) ? "None" : job.req %></p>
+					<p class="card-text">Skill: </p>
 					<ul>
 						<% job.skills.forEach((skill) => { %>
 							<li class="card-text"><%= skill.name %></li>

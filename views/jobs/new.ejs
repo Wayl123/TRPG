@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Create New Job</h1>
+		</div>
+		<div class="center-form">
+			<form action="/trpg" method="POST">
+				<div class="form-group">
+					<label>Name</label>
+					<input class="form-control" type="text" name="job[name]" placeholder="job name" required>
+				</div>
+				<div class="form-group">
+					<label>Job level</label>
+					<input class="form-control" type="number" name="job[joblvl]" value="0" min="0" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Prerequisite</label>
+					<input class="form-control" type="text" name="job[req]" placeholder="required job name (empty = none)">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-success" type="submit">Submit!</button>
+				</div>
+			</form>
+			<a class="btn btn-sm btn-danger" href="/job">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>
