@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
 
 //new
 router.get("/new", (req, res) => {
-	Job.find({"joblvl": 0}, (err, jobs) => {
+	Job.find({joblvl: 0}, (err, jobs) => {
 		if(err){
 			console.log(err);
 		} else {
@@ -40,15 +40,15 @@ router.post("/", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
-			Job.findOne({"name": req.body.job}, (err, job) => {
+			Job.findOne({name: req.body.job}, (err, job) => {
 				if(err){
 					console.log(err);
 				} else {
 					character.jobs.push(job);
 					character.save();
-					res.redirect("/trpg");
 				}
 			});
+			res.redirect("/trpg");
 		}
 	});
 });
@@ -79,11 +79,13 @@ router.get("/:id/edit", (req, res) => {
 		path: "jobs",
 		select: "name"
 	}]).exec((err, character) => {
-		if(err){
-			console.log(err);
-		} else {
-			res.render("characters/edit", {character: character});
-		}
+		Job.find({joblvl: 0}, (err, jobs) => {
+			if(err){
+				console.log(err);
+			} else {
+				res.render("characters/edit", {character: character, jobs: jobs});
+			}
+		});
 	});
 });
 
@@ -93,6 +95,14 @@ router.put("/:id", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
+			Job.findOne({name: req.body.job}, (err, job) => {
+				if(err){
+					console.log(err);
+				} else {
+					character.jobs.push(job);
+					character.save();
+				}
+			});
 			res.redirect("/trpg/" + req.params.id);
 		}
 	});

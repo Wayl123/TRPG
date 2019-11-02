@@ -5,9 +5,10 @@
 <div class="row text-center">
 	<% skills.forEach((skill) => { %>
 		<div class="col-md-3 col-sm-6">
-			<div class="card" style="width: 18rem;">
+			<div class="card card-width">
 				<div class="card-body">
 					<h5 class="card-title"><%= skill.name %></h5>
+					<a class="btn btn-sm btn-warning" href="/skill/<%= skill._id %>/edit">Edit Skill</a>
 					<form class="delete-form" action="/skill/<%= skill._id %>?_method=DELETE" method="POST">
 						<button class="btn btn-sm btn-danger">Delete</button>
 					</form>
@@ -17,7 +18,6 @@
 					<p class="card-text">Max Roll: <%= skill.max %></p>
 					<p class="card-text">Min Roll: <%= skill.min %></p>
 					<p class="card-text">Number of dice: <%= skill.times %></p>
-					<a class="btn btn-sm btn-warning" href="/skill/<%= skill._id %>">Full detail</a>
 				</div>
 			</div>
 		</div>

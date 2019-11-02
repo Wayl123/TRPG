@@ -5,9 +5,10 @@
 <div class="row text-center">
 	<% jobs.forEach((job) => { %>
 		<div class="col-md-3 col-sm-6">
-			<div class="card" style="width: 18rem;">
+			<div class="card card-width">
 				<div class="card-body">
 					<h5 class="card-title"><%= job.name %></h5>
+					<a class="btn btn-sm btn-warning" href="/job/<%= job._id %>/edit">Edit Job</a>
 					<form class="delete-form" action="/job/<%= job._id %>?_method=DELETE" method="POST">
 						<button class="btn btn-sm btn-danger">Delete</button>
 					</form>
@@ -20,7 +21,6 @@
 							<% }); %>
 						</ul>
 					</p>
-					<a class="btn btn-sm btn-warning" href="/job/<%= job._id %>">Full detail</a>
 				</div>
 			</div>
 		</div>

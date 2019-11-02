@@ -30,7 +30,8 @@ router.post("/", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
-			Job.findOne({"name": job.req}, (err, prejob) => {
+			//link job to prerequisite job
+			Job.findOne({name: job.req}, (err, prejob) => {
 				if(err || !prejob){
 					console.log(err);
 				} else {
@@ -38,17 +39,89 @@ router.post("/", (req, res) => {
 					prejob.save();
 				}
 			});
-			Skill.find({"req": job.name}, (err, skills) => {
-				if(err || !skills){
+			//link job that has it as prerequisite to it
+			Job.find({req: job.name}, (err, jobs) => {
+				if(err || !jobs){
 					console.log(err);
 				} else {
-					skills.forEach((skill) => {
-						job.skills.push(skill);
+					jobs.forEach((advjob) => {
+						job.adv.push(advjob);
 					});
+				}
+				//link skill that have this job as job skill
+				Skill.find({req: job.name}, (err, skills) => {
+					if(err || !skills){
+						console.log(err);
+					} else {
+						skills.forEach((skill) => {
+							job.skills.push(skill);
+						});
+					}
 					job.save();
+					res.redirect("/job");
+				});
+			});
+		}
+	});
+});
+
+//no show
+
+//edit
+router.get("/:id/edit", (req, res) => {
+	Job.findById(req.params.id, (err, job) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.render("jobs/edit", {job: job});
+		}
+	});
+});
+
+//update
+router.put("/:id", (req, res) => {
+	Job.findByIdAndUpdate(req.params.id, req.body.job, (err, job) => {
+		if(err){
+			console.log(err);
+		} else {
+			//in case job name is updated
+			//unlink
+			Job.updateOne({adv: {$in: [req.params.id]}}, {$pull: {adv: req.params.id}}, (err, affectedjob) => {
+				if(err)
+					console.log(err);
+			});
+			job.adv = [];
+			//unlink all skill
+			job.skills = [];
+			//relink
+			Job.findOne({name: req.body.job.req}, (err, prejob) => {
+				if(err || !prejob){
+					console.log(err);
+				} else {
+					prejob.adv.push(job);
+					prejob.save();
 				}
 			});
-			res.redirect("/job");
+			Job.find({req: req.body.job.name}, (err, jobs) => {
+				if(err || !jobs){
+					console.log(err);
+				} else {
+					jobs.forEach((advjob) => {
+						job.adv.push(advjob);
+					});
+				}
+				Skill.find({"req": req.body.job.name}, (err, skills) => {
+					if(err || !skills){
+						console.log(err);
+					} else {
+						skills.forEach((skill) => {
+							job.skills.push(skill);
+						});
+					}
+					job.save();
+					res.redirect("/job");
+				});
+			});
 		}
 	});
 });
@@ -59,7 +132,8 @@ router.delete("/:id", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
-			Job.updateOne({"name": job.req}, {$pull: {adv: job._id}}, (err, affectedJob) => {
+			//unlink job that has this job as advancement job
+			Job.updateOne({adv: {$in: [req.params.id]}}, {$pull: {adv: req.params.id}}, (err, affectedjob) => {
 				if(err)
 					console.log(err);
 			});

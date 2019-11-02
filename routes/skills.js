@@ -27,6 +27,7 @@ router.post("/", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
+			//attach skill to job if is job skill
 			Job.findOne({"name": skill.req}, (err, job) => {
 				if(err || !job){
 					console.log(err);
@@ -35,6 +36,7 @@ router.post("/", (req, res) => {
 					job.save();
 				}
 			});
+			//attach skill to weapon if is weapon skill
 			Weapon.findOne({"name": skill.req}, (err, weapon) => {
 				if(err || !weapon){
 					console.log(err);
@@ -48,13 +50,53 @@ router.post("/", (req, res) => {
 	});
 });
 
+//no show
+
+//edit
+router.get("/:id/edit", (req, res) => {
+	Skill.findById(req.params.id, (err, skill) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.render("skills/edit", {skill: skill});
+		}
+	});
+});
+
+//update
+router.put("/:id", (req, res) => {
+	Skill.findByIdAndUpdate(req.params.id, req.body.skill, (err, skill) => {
+		if(err){
+			console.log(err);
+		} else {
+			//in case skill req is changed
+			//unlink
+			Job.updateOne({skills: {$in: [req.params.id]}}, {$pull: {skills: req.params.id}}, (err, affectedJob) => {
+				if(err)
+					console.log(err);
+			});
+			//relink
+			Job.findOne({name: req.body.skill.req}, (err, job) => {
+				if(err || !job){
+					console.log(err);
+				} else {
+					job.skills.push(skill);
+					job.save();
+				}
+			});
+			res.redirect("/skill");
+		}
+	});
+});
+
 //destroy
 router.delete("/:id", (req, res) => {
 	Skill.findByIdAndRemove(req.params.id, (err, skill) => {
 		if(err){
 			console.log(err);
 		} else {
-			Job.updateOne({"name": skill.req}, {$pull: {skills: skill._id}}, (err, affectedJob) => {
+			//unlink job that has the skill as job skill
+			Job.updateOne({skills: {$in: [req.params.id]}}, {$pull: {skills: req.params.id}}, (err, affectedJob) => {
 				if(err)
 					console.log(err);
 			});

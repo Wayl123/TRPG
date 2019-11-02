@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h1>Create New Character</h1>
+			<h1>Edit Character</h1>
 		</div>
 		<div class="center-form">
 			<form action="/trpg/<%= character._id %>?_method=PUT" method="POST">
@@ -13,13 +13,21 @@
 				</div>
 				<div class="form-group">
 					<label>Job/Class</label>
-					<ul>
-						<% character.jobs.forEach((job) => { %>
-							<li>
-								<%= job.name %>
-							</li>
-						<% }); %>
-					</ul>
+					<% if(character.jobs.length > 0){ %>
+						<ul>
+							<% character.jobs.forEach((job) => { %>
+								<li>
+									<%= job.name %>
+								</li>
+							<% }); %>
+						</ul>
+					<% } else { %>
+						<select class="form-control" name="job">
+							<% jobs.forEach((job) => { %>
+								<option value="<%= job.name %>"><%= job.name %></option>
+							<% }); %>
+						</select>
+					<% } %>
 				</div>
 				<div class="form-group">
 					<label>Health Point (Character dies when this reach 0)</label>

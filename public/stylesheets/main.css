@@ -4,9 +4,9 @@ ul {
 	padding: 0;
 }
 
-.center-form {
-	width: 30%; 
-	margin: 25px auto;
+/* index */
+.card-width {
+	width: 18rem;
 }
 
 .separate-line {
@@ -14,6 +14,14 @@ ul {
 	margin: auto;
 }
 
+/* new/edit */
+.center-form {
+	width: 30%; 
+	margin: 25px auto;
+}
+
+/* index/show */
 .delete-form {
 	display: inline;
 }
+

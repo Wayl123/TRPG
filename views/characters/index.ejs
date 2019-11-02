@@ -7,7 +7,7 @@
 <div class="row text-center">
 	<% characters.forEach((character) => { %>
 		<div class="col-md-3 col-sm-6">
-			<div class="card" style="width: 18rem;">
+			<div class="card card-width">
 				<div class="card-body">
 					<h5 class="card-title"><%= character.name %></h5>
 					<form class="delete-form" action="/trpg/<%= character._id %>?_method=DELETE" method="POST">
