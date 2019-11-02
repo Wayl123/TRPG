@@ -1,6 +1,7 @@
 var express = require("express"),
 	router = express.Router(),
 	//models
+	Skill = require("../models/skill"),
 	Job = require("../models/job");
 
 //index
@@ -29,6 +30,24 @@ router.post("/", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
+			Job.findOne({"name": job.req}, (err, prejob) => {
+				if(err || !prejob){
+					console.log(err);
+				} else {
+					prejob.adv.push(job);
+					prejob.save();
+				}
+			});
+			Skill.find({"req": job.name}, (err, skills) => {
+				if(err || !skills){
+					console.log(err);
+				} else {
+					skills.forEach((skill) => {
+						job.skills.push(skill);
+					});
+					job.save();
+				}
+			});
 			res.redirect("/job");
 		}
 	});
@@ -40,6 +59,10 @@ router.delete("/:id", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
+			Job.updateOne({"name": job.req}, {$pull: {adv: job._id}}, (err, affectedJob) => {
+				if(err)
+					console.log(err);
+			});
 			res.redirect("/job");
 		}
 	});

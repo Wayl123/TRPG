@@ -54,6 +54,10 @@ router.delete("/:id", (req, res) => {
 		if(err){
 			console.log(err);
 		} else {
+			Job.updateOne({"name": skill.req}, {$pull: {skills: skill._id}}, (err, affectedJob) => {
+				if(err)
+					console.log(err);
+			});
 			res.redirect("/skill");
 		}
 	});

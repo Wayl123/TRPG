@@ -90,7 +90,11 @@ router.get("/:id/edit", (req, res) => {
 //update
 router.put("/:id", (req, res) => {
 	Character.findByIdAndUpdate(req.params.id, req.body.character, (err, character) => {
-		res.redirect("/trpg/" + req.params.id);
+		if(err){
+			console.log(err);
+		} else {
+			res.redirect("/trpg/" + req.params.id);
+		}
 	});
 });
 
