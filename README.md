@@ -1,17 +1,12 @@
 # TRPG
-Used to play TRPG games.
+This is to assist GM to set up an TRPG game not that I really know the rules of TRPG though.
 
 # Planning to do list
-* Finish edit page
-  * Allow removal of job
-  * Decide on how adjusting of stat will work
-  * Item modifying option
-* Set up skill and job edit page for gm.
-* Set up character show page with buttons for quick change such as taking damage and such.
-* Set up skill rolling for when skill is being use.
-* Set up character inventory
-* Set up weapon equipping
-* Test character weapon display (weapon skill shows up in skill etc...)
+* Complete database linking of weapon
+* Item inventory for character
+  * Set up weapon equipping
+  * Test character weapon display (weapon skill shows up in skill etc...)
+* Set up battle page
+  * Skill rolling for when skill is being use.
+  * Quick hp modification as well as other stat maybe
 
-# Deployment
-Not deployed yet.
