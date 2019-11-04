@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<a class="btn btn-sm btn-primary" href="/weapon/new">Create new weapon</a>
+
+<div class="row text-center">
+	<% weapons.forEach((weapon) => { %>
+		<div class="col-md-3 col-sm-6">
+			<div class="card card-width">
+				<div class="card-body">
+					<h5 class="card-title"><%= weapon.name %></h5>
+					<a class="btn btn-sm btn-warning" href="/weapon/<%= weapon._id %>/edit">Edit Weapon</a>
+					<form class="delete-form" action="/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
+						<button class="btn btn-sm btn-danger">Delete</button>
+					</form>
+					<p class="card-text">Require Job: <%= (!weapon.reqjob || weapon.reqjob === "") ? "None" : weapon.reqjob %></p>
+					<p class="card-text">Type: <%= weapon.type %></p>
+					<p class="card-text">Max Roll: <%= weapon.max %></p>
+					<p class="card-text">Min Roll: <%= weapon.min %></p>
+					<p class="card-text">Number of rolls: <%= weapon.times %></p>
+					<p class="card-text">Skill: 
+						<ul>
+							<% weapon.skills.forEach((skill) => { %>
+								<li class="card-text"><%= skill.name %></li>
+							<% }); %>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
+
+<a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
+
+<% include ../partials/footer %>

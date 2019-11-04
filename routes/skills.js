@@ -84,6 +84,14 @@ router.put("/:id", (req, res) => {
 					job.save();
 				}
 			});
+			Weapon.findOne({"name": req.body.skill.req}, (err, weapon) => {
+				if(err || !weapon){
+					console.log(err);
+				} else {
+					weapon.skills.push(skill);
+					weapon.save();
+				}
+			});
 			res.redirect("/skill");
 		}
 	});

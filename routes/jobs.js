@@ -58,9 +58,9 @@ router.post("/", (req, res) => {
 						});
 					}
 					job.save();
-					res.redirect("/job");
 				});
 			});
+			res.redirect("/job");
 		}
 	});
 });
@@ -119,9 +119,9 @@ router.put("/:id", (req, res) => {
 						});
 					}
 					job.save();
-					res.redirect("/job");
 				});
 			});
+			res.redirect("/job");
 		}
 	});
 });

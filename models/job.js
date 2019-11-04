@@ -10,6 +10,12 @@ var jobSchema = new mongoose.Schema({
 			ref: "Job"
 		}
 	],
+	weapons: [ //job exclusive weapons
+		{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Weapon"
+		}
+	],
 	skills: [ //class skill, character can use all job skill they have been
 		{
 			type: mongoose.Schema.Types.ObjectId,

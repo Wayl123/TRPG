@@ -13,6 +13,7 @@ var express = require("express"),
 	//routes
 	characterRoutes = require("./routes/characters"),
 	jobRoutes = require("./routes/jobs"),
+	weaponRoutes = require("./routes/weapons"),
 	skillRoutes = require("./routes/skills"),
 	indexRoutes = require("./routes/index");
 
@@ -28,6 +29,7 @@ app.use(methodOverride("_method"));
 //use routes
 app.use("/trpg", characterRoutes);
 app.use("/job", jobRoutes);
+app.use("/weapon", weaponRoutes);
 app.use("/skill", skillRoutes);
 app.use(indexRoutes);
 	

@@ -13,7 +13,7 @@
 						<button class="btn btn-sm btn-danger">Delete</button>
 					</form>
 					<p class="card-text">Joblvl: <%= job.joblvl %></p>
-					<p class="card-text">Req: <%= (!job.req || job.req === "") ? "None" : job.req %></p>
+					<p class="card-text">Prerequisite job: <%= (!job.req || job.req === "") ? "None" : job.req %></p>
 					<p class="card-text">Skill: 
 						<ul>
 							<% job.skills.forEach((skill) => { %>

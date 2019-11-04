@@ -1,0 +1,46 @@
+<% include ../partials/header %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Edit Weapon</h1>
+		</div>
+		<div class="center-form">
+			<form action="/weapon/<%= weapon._id %>?_method=PUT" method="POST">
+				<div class="form-group">
+					<label>Name</label>
+					<input class="form-control" type="text" name="weapon[name]" placeholder="weapon name" value="<%= weapon.name %>" required>
+				</div>
+				<div class="form-group">
+					<label>Required Job</label>
+					<input class="form-control" type="text" name="weapon[reqjob]" placeholder="required job name (empty = none)" value="<%= weapon.reqjob %>">
+				</div>
+				<div class="form-group">
+					<label>Type</label>
+					<select class="form-control" name="weapon[type]">
+						<option value="physical" <%= weapon.type === "physical" ? "selected" : "" %>>Physical</option>
+						<option value="magical" <%= weapon.type === "magical" ? "selected" : "" %>>Magical</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Max Damage (Maximum damage roll, must be higher or equal to minimum damage roll)</label>
+					<input class="form-control" type="number" name="weapon[max]" value="<%= weapon.max %>" min="0" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Min Damage (Minimum damage roll)</label>
+					<input class="form-control" type="number" name="weapon[min]" value="<%= weapon.min %>" min="0" step="1" required>
+				</div>
+				<div class="form-group">
+					<label>Dice rolls (How many dice to roll)</label>
+					<input class="form-control" type="number" name="weapon[times]" value="<%= weapon.times %>" min="1" step="1" required>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-success" type="submit">Submit!</button>
+				</div>
+			</form>
+			<a class="btn btn-sm btn-danger" href="/weapon">Go Back</a>
+		</div>
+	</div>
+</div>
+
+<% include ../partials/footer %>
