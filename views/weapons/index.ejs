@@ -12,7 +12,7 @@
 					<form class="delete-form" action="/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
 						<button class="btn btn-sm btn-danger">Delete</button>
 					</form>
-					<p class="card-text">Require Job: <%= (!weapon.reqjob || weapon.reqjob === "") ? "None" : weapon.reqjob %></p>
+					<p class="card-text">Require Job: <%= (!weapon.req || weapon.req === "") ? "None" : weapon.req %></p>
 					<p class="card-text">Type: <%= weapon.type %></p>
 					<p class="card-text">Max Roll: <%= weapon.max %></p>
 					<p class="card-text">Min Roll: <%= weapon.min %></p>

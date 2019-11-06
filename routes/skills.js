@@ -75,6 +75,10 @@ router.put("/:id", (req, res) => {
 				if(err)
 					console.log(err);
 			});
+			Weapon.updateOne({skills: {$in: [req.params.id]}}, {$pull: {skills: req.params.id}}, (err, affectedWeapon) => {
+				if(err)
+					console.log(err);
+			});
 			//relink
 			Job.findOne({name: req.body.skill.req}, (err, job) => {
 				if(err || !job){
@@ -105,6 +109,10 @@ router.delete("/:id", (req, res) => {
 		} else {
 			//unlink job that has the skill as job skill
 			Job.updateOne({skills: {$in: [req.params.id]}}, {$pull: {skills: req.params.id}}, (err, affectedJob) => {
+				if(err)
+					console.log(err);
+			});
+			Weapon.updateOne({skills: {$in: [req.params.id]}}, {$pull: {skills: req.params.id}}, (err, affectedWeapon) => {
 				if(err)
 					console.log(err);
 			});

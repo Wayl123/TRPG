@@ -2,6 +2,7 @@ var express = require("express"),
 	router = express.Router(),
 	//models
 	Skill = require("../models/skill"),
+	Weapon = require("../models/weapon"),
 	Job = require("../models/job");
 
 //index
@@ -57,7 +58,16 @@ router.post("/", (req, res) => {
 							job.skills.push(skill);
 						});
 					}
-					job.save();
+					Weapon.find({req: job.name}, (err, weapons) => {
+						if(err || !weapons){
+							console.log(err);
+						} else {
+							weapons.forEach((weapon) => {
+								job.weapons.push(weapon);
+							});
+						}
+						job.save();
+					});
 				});
 			});
 			res.redirect("/job");
@@ -93,6 +103,8 @@ router.put("/:id", (req, res) => {
 			job.adv = [];
 			//unlink all skill
 			job.skills = [];
+			//unlink all weapons
+			job.weapons = [];
 			//relink
 			Job.findOne({name: req.body.job.req}, (err, prejob) => {
 				if(err || !prejob){
@@ -110,7 +122,7 @@ router.put("/:id", (req, res) => {
 						job.adv.push(advjob);
 					});
 				}
-				Skill.find({"req": req.body.job.name}, (err, skills) => {
+				Skill.find({req: req.body.job.name}, (err, skills) => {
 					if(err || !skills){
 						console.log(err);
 					} else {
@@ -118,7 +130,16 @@ router.put("/:id", (req, res) => {
 							job.skills.push(skill);
 						});
 					}
-					job.save();
+					Weapon.find({req: req.body.job.name}, (err, weapons) => {
+						if(err || !weapons){
+							console.log(err);
+						} else {
+							weapons.forEach((weapon) => {
+								job.weapons.push(weapon);
+							});
+						}
+						job.save();
+					});
 				});
 			});
 			res.redirect("/job");

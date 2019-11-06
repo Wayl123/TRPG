@@ -33,10 +33,10 @@ router.post("/", (req, res) => {
 		} else {
 			//link weapon to required job
 			Job.findOne({name: weapon.req}, (err, job) => {
-				if(err || !prejob){
+				if(err || !job){
 					console.log(err);
 				} else {
-					job.weapon.push(weapon);
+					job.weapons.push(weapon);
 					job.save();
 				}
 			});
@@ -85,10 +85,10 @@ router.put("/:id", (req, res) => {
 			weapon.skills = [];
 			//relink
 			Job.findOne({name: req.body.weapon.req}, (err, job) => {
-				if(err || !prejob){
+				if(err || !job){
 					console.log(err);
 				} else {
-					job.weapon.push(weapon);
+					job.weapons.push(weapon);
 					job.save();
 				}
 			});
