@@ -31,15 +31,14 @@
 						More detail
 					</button>
 					<div id="collapse<%= character._id %>" class="collapse">
-						<p class="card-text">Skill: 
-							<ul>
-								<% character.jobs.forEach((job) => { %>
-									<% job.skills.forEach((skill) => { %>
-										<li class="card-text"><%= skill.name %></li>
-									<% }); %>
+						<p class="card-text">Skill: </p>
+						<ul>
+							<% character.jobs.forEach((job) => { %>
+								<% job.skills.forEach((skill) => { %>
+									<li class="card-text"><%= skill.name %></li>
 								<% }); %>
-							</ul>
-						</p>
+							<% }); %>
+						</ul>
 					</div>
 					<a class="btn btn-sm btn-warning" href="/trpg/<%= character._id %>">Full detail</a>
 				</div>

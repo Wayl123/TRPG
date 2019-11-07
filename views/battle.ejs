@@ -1,0 +1,35 @@
+<% include ./partials/header %>
+
+<div class="row text-center">
+	<% characters.forEach((character) => { %>
+		<div class="col-md-3 col-sm-6">
+			<div class="card card-width">
+				<div class="card-body">
+					<h5 class="card-title"><%= character.name %></h5>
+					<p class="card-text">
+						Class: <%= character.jobs.length > 0 ? character.jobs.slice(-1)[0].name : "" %>
+					</p>
+					<p class="card-text">
+						Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>
+					</p>
+					<p class="card-text">HP: <%= character.hp %></p>
+					<div>
+						<p class="card-text">Choose Skill: </p>
+						<select class="selectSkill">
+							<option disabled selected> -- select skill -- </option>
+							<% character.jobs.forEach((job) => { %>
+								<% job.skills.forEach((skill) => { %>
+									<% var val = skill.type + "/" + skill.acc + "/" + skill.max + "/" + skill.min + "/" + skill.times %>
+									<option value="<%= val %>"><%= skill.name %></option>
+								<% }); %>
+							<% }); %>
+						</select>
+						<p class="card-text skillOut">text</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% }); %>
+</div>
+
+<% include ./partials/footer %>

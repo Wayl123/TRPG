@@ -17,13 +17,14 @@
 					<p class="card-text">Max Roll: <%= weapon.max %></p>
 					<p class="card-text">Min Roll: <%= weapon.min %></p>
 					<p class="card-text">Number of rolls: <%= weapon.times %></p>
-					<p class="card-text">Skill: 
+					<div>
+						<p class="card-text">Skill: </p>
 						<ul>
 							<% weapon.skills.forEach((skill) => { %>
 								<li class="card-text"><%= skill.name %></li>
 							<% }); %>
 						</ul>
-					</p>
+					</div>
 				</div>
 			</div>
 		</div>
