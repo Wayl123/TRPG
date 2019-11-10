@@ -13,23 +13,44 @@
 						Weapon: <%= character.weapon.length === 0 ? "None" : character.weapon %>
 					</p>
 					<p class="card-text">HP: <%= character.hp %></p>
+					<p class="card-text">Speed: <%= character.spd %></p>
 					<div>
 						<p class="card-text">Choose Skill: </p>
 						<select class="selectSkill">
+							<% var charaval = character.str + "/" + character.mag + "/" + character.dex %>
 							<option disabled selected> -- select skill -- </option>
 							<% character.jobs.forEach((job) => { %>
 								<% job.skills.forEach((skill) => { %>
-									<% var val = skill.type + "/" + skill.acc + "/" + skill.max + "/" + skill.min + "/" + skill.times %>
+									<% var val = skill.type + "/" + skill.acc + "/" + skill.max + "/" + skill.min + "/" + skill.times + "/" %>
+									<% val += charaval %>
 									<option value="<%= val %>"><%= skill.name %></option>
 								<% }); %>
 							<% }); %>
 						</select>
-						<p class="card-text skillOut">text</p>
+						<p class="card-text skillOut"></p>
+						<button class="btn btn-sm btn-success useSkill" disabled>Use skill</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	<% }); %>
 </div>
+
+<div class="row text-center">
+	<div class="col">
+		<div class="card card-width">
+			<div class="card-body">
+				<p class="card-text">
+					Damage Roll: 
+					<span id="damageInfo"></span>
+					<span id="damageDealt"></span>
+				</p>
+				<p class="card-text" id="damageResult"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<a class="btn btn-sm btn-danger" href="/trpg">Go Back</a>
 
 <% include ./partials/footer %>
