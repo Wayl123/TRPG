@@ -29,6 +29,7 @@
 						</select>
 						<p class="card-text skillOut"></p>
 						<button class="btn btn-sm btn-success useSkill" disabled>Use skill</button>
+						<button class="btn btn-sm btn-danger dealDamage" hidden>Attack</button>
 					</div>
 				</div>
 			</div>
@@ -37,8 +38,8 @@
 </div>
 
 <div class="row text-center">
-	<div class="col">
-		<div class="card card-width">
+	<div class="col-10">
+		<div class="card">
 			<div class="card-body">
 				<p class="card-text">
 					Damage Roll: 
@@ -46,6 +47,26 @@
 					<span id="damageDealt"></span>
 				</p>
 				<p class="card-text" id="damageResult"></p>
+			</div>
+		</div>
+	</div>
+	<div class="col-2">
+		<div class="card">
+			<div class="card-body">
+				<% 
+					var sortChar = [];
+					characters.forEach((character) => {
+						var sortObj = {name: character.name, spd: character.spd};
+						sortChar.push(sortObj);
+					});
+					sortChar.sort((a, b) => (a.spd < b.spd) ? 1 : -1);
+				%>
+				<p class="card-text">
+					Turn Order: <br>
+					<% sortChar.forEach((sorted) => { %>
+						<%= sorted.name %><br>
+					<% }); %>
+				</p>
 			</div>
 		</div>
 	</div>
